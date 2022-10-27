@@ -8,6 +8,7 @@ Copyright (c) 2022 Avi Lumelsky
 
 import importlib
 import os
+import sys
 import stat
 import time
 from pathlib import Path
@@ -160,6 +161,9 @@ def render_bpftrace_template(
         templates_dir / default_template_filename,
         "r",
     ).read()
+
+    this_python_path = sys.executable
+    script_template = script_template.replace('<{this_python_path}>', this_python_path)
 
     # PYTHON instrumentations
     code_syscall_entry = ""

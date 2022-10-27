@@ -683,7 +683,7 @@ BEGIN {
 }
 
 
-usdt:/workspace/Python-3.10.0/python:function__entry {
+usdt:<{this_python_path}>:function__entry {
         @["depth"]++;
         @entrypoints[str(arg0)] = @["depth"];
         @globals["previous_module"] = @globals["current_module"];
@@ -692,7 +692,7 @@ usdt:/workspace/Python-3.10.0/python:function__entry {
         ###FUNCTION_ENTRY###
 }
 
-usdt:/workspace/Python-3.10.0/python:function__return {
+usdt:<{this_python_path}>:function__return {
         @["depth"]--;
         ###FUNCTION_EXIT###
 }
